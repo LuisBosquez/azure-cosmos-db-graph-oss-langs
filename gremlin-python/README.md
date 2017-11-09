@@ -1,6 +1,6 @@
 # Gremlin-Python driver sample for Azure Cosmos DB
 
-Requires: `Python 3.6`
+This template will execute Gremlin queries against a remote Azure Cosmos DB Graph database using `gremlin-python`.
 
 ## Instructions
 1. Install the requirements
