@@ -1,5 +1,4 @@
 from gremlin_python.driver import client
-import asyncio
 import sys, traceback
 
 _gremlin_cleanup_graph = "g.V().drop()"
