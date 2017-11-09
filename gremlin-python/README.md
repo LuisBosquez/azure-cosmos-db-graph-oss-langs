@@ -1,5 +1,7 @@
 # Gremlin-Python driver sample for Azure Cosmos DB
 
+Requires: `Python 3.6`
+
 ## Instructions
 1. Install the requirements
 ```
