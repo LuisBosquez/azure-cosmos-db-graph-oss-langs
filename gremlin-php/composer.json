@@ -1,0 +1,5 @@
+{
+    "require": {
+        "brightzone/gremlin-php": "2.*"
+    }
+}
