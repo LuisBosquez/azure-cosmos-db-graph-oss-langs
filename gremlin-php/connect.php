@@ -2,7 +2,7 @@
 require_once('vendor/autoload.php');
 use \Brightzone\GremlinDriver\Connection;
 
-//error_reporting(E_ALL ^ E_WARNING);
+error_reporting(E_ALL ^ E_WARNING);
 
 // Write your own configuration values here
 $db = new Connection([
@@ -89,6 +89,13 @@ function countVertices($db)
     }
 }
 
+function pressAnyKeyToContinuePrompt($message)
+{
+    printf("%s. Press any key to continue\n", $message);
+    $fp = fopen("php://stdin","r");
+    fgets($fp);
+}
+
 try {
 
     print "Welcome to Azure Cosmos DB + Gremlin on PHP!\n\n";
@@ -96,29 +103,19 @@ try {
     $db->open();
     print "Successfully connected to the database\n\n";
 
-    print "We will proceed to drop whatever graph is on your collection. Press any key to continue\n";
-    $fp = fopen("php://stdin","r");
-    fgets($fp);
+    pressAnyKeyToContinuePrompt("We will proceed to drop whatever graph is on your collection.");
     dropGraph($db);
 
-    print "Great! Now that we have a fresh collection we can proceed to insert a few vertices. Press any key to continue\n";
-    $fp = fopen("php://stdin","r");
-    fgets($fp);
+    pressAnyKeyToContinuePrompt("Great! Now that we have a fresh collection we can proceed to insert a few vertices.");
     addVertices($db, $_queries_insert_vertices);
-    
-    print "Now that we have the vertices, let's add a relationship between them. Press any key to continue\n";
-    $fp = fopen("php://stdin","r");
-    fgets($fp);
+
+    pressAnyKeyToContinuePrompt("Now that we have the vertices, let's add a relationship between them.");
     addEdges($db, $_queries_insert_edges);
     
-    print "Cool! Now let's run some aggregates. Press any key to continue\n";
-    $fp = fopen("php://stdin","r");
-    fgets($fp);
+    pressAnyKeyToContinuePrompt("Cool! Now let's run some aggregates.");
     countVertices($db);
     
-    print "And that's our demo! Press any key to finish\n";
-    $fp = fopen("php://stdin","r");
-    fgets($fp);
+    pressAnyKeyToContinuePrompt("And that's our demo!");
 
     $db->close();
 } catch (Exception $e) {
